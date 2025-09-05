@@ -172,3 +172,61 @@ nav {
     transform: translateY(0);
   }
 }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  header::before {
+    height: 100px;
+    clip-path: none;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo span {
+    font-size: 18px;
+  }
+  
+  nav {
+    position: static;
+    transform: none;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    min-width: auto;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: none;
+    border-top: 1px solid rgba(0, 255, 0, 0.4);
+  }
+
+  .panel {
+    margin: 20px 10px;
+    padding: 10px;
+  }
+
+  .panel-content {
+    font-size: 16px;
+  }
+}
