@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weida HVAC</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Google Fonts for Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,6 +20,14 @@
         }
         .page.active {
             display: block;
+        }
+        /* Make each section on the About page have a distinct background */
+        #about > .card {
+            background-color: #000000;
+        }
+        #about .card-header {
+            background-color: #1a1a1a;
+            border-bottom: 2px solid #76C44B;
         }
         /* Style for the canvas background */
         #bg-canvas {
@@ -84,19 +90,6 @@
         .navbar-links a:hover {
             color: #76C44B;
         }
-        .hamburger-icon {
-            cursor: pointer;
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .hamburger-icon div {
-            width: 30px;
-            height: 3px;
-            background-color: #76C44B;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
         @media (max-width: 768px) {
             .navbar-links {
                 display: none;
@@ -110,9 +103,6 @@
                 text-align: center;
             }
             .navbar-links.active {
-                display: flex;
-            }
-            .hamburger-icon {
                 display: flex;
             }
         }
@@ -135,11 +125,11 @@
             margin-bottom: 1rem;
         }
         .home-image-container {
-            flex: 1;
+            flex: 2;
             position: relative;
             text-align: right;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%);
-            border: 2px solid #76C44B;
+            clip-path: polygon(0 0%, 100% 0, 100% 100%, 0% 100%);
+            border: 0px solid #76C44B;
         }
         .home-image-container img {
             width: 100%;
@@ -173,7 +163,6 @@
         }
         /* Our History Section Styles */
         #our-history-section {
-            background-color: #000000;
             position: relative;
         }
         .timeline-grid {
@@ -271,6 +260,102 @@
                 padding-top: 70px;
             }
         }
+        /* New Project Section Styles */
+        .project-section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        #projects-section .card-header h2 {
+            font-size: 2.5rem;
+        }
+        #projects-section .mb-5 > h3.lead {
+             color: #ffffff;
+        }
+        /* New grid for projects */
+        .project-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .project-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 100%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background-color: #222222;
+        }
+        .project-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .project-image-wrapper:hover .project-image {
+            transform: scale(1.1);
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            clip-path: inherit;
+        }
+        .project-image-wrapper:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-overlay h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #76C44B;
+        }
+        .project-overlay p {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        /* Project Item Styles (from former And Many More section) */
+        .project-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .project-item img {
+            width: 200px;
+            height: 200px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            object-fit: fill;
+        }
+        .project-item-text h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #76C44B;
+        }
+        .project-item-text p {
+            color: #ffffff;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .project-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
         /* Contact Page Styles */
         #contact .contact-container {
             display: flex;
@@ -351,6 +436,9 @@
                 justify-content: center;
             }
         }
+        #introduction-section .card-header h2 {
+            white-space: nowrap; /* Prevents text from wrapping */
+        }
     </style>
 </head>
 <body>
@@ -359,7 +447,7 @@
         <div class="header-bg"></div>
         <div class="container d-flex justify-content-between align-items-center">
             <div class="header-logo">
-                <img src="image/weida logo.jpg" alt="Weida HVAC Logo">
+                <img src="image/weida_logo.png" alt="Weida HVAC Logo">
                 <span class="text-weida-green">WEIDA</span> HVAC
             </div>
             <nav class="navbar-links" id="navbarNav">
@@ -378,15 +466,9 @@
                 </div>
                 <a href="#" onclick="showPage('contact')">Contact</a>
             </nav>
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
         </div>
     </header>
     <main class="container my-5 pt-5">
-        <!-- Home Page (Redesigned) -->
         <div id="home" class="page active">
             <div class="row home-section">
                 <div class="col-lg-6 home-content">
@@ -402,135 +484,431 @@
                 </div>
             </div>
         </div>
-        <!-- About Page (All content combined here) -->
         <div id="about" class="page">
-            <div id="introduction-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <img src="image/certificate.jpg" alt="Weida HVAC" class="w-100 rounded-3 shadow mb-3">
-                    </div>
-                    <div class="col-lg-6">
-                        <h2 class="h1 fw-bold text-weida-green text-center text-lg-start mb-4">INTRODUCTION</h2>
-                        <div class="card-body p-0 text-white">
-                            <p>Established in 2019, we are a service-oriented company specializing in the design, installation, and maintenance of air conditioning and ventilation systems. Over the years, we have built a strong reputation for delivering high-quality solutions that meet the specific needs of our clients. We are proud to be an authorized distributor of Hisense and Gree products, and we have successfully installed VRF central air conditioning systems for multiple residential and commercial buildings, particularly in Pasay and Parañaque City, Philippines. Our team is highly skilled and experienced in handling the installation, commissioning, and maintenance of large-scale HVAC equipment from leading brands such as Daikin, Mitsubishi, Gree, and Hisense. Through our dedication to excellence and customer satisfaction, we continue to provide efficient and reliable solutions tailored to every project's unique requirements.</p>
+            <div id="introduction-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="h1 fw-bold text-weida-green text-center mb-0">INTRODUCTION</h2>
+                </div>
+                <div class="card-body p-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 mb-4 mb-lg-0">
+                            <img src="image/certificate.jpg" alt="Weida HVAC" class="w-100 rounded-3 shadow">
+                        </div>
+                        <div class="col-lg-8">
+                            <p class="text-white">Established in 2019, we are a service-oriented company specializing in the design, installation, and maintenance of air conditioning and ventilation systems. Over the years, we have built a strong reputation for delivering high-quality solutions that meet the specific needs of our clients. We are proud to be an authorized distributor of Hisense and Gree products, and we have successfully installed VRF central air conditioning systems for multiple residential and commercial buildings, particularly in Pasay and Parañaque City, Philippines. Our team is highly skilled and experienced in handling the installation, commissioning, and maintenance of large-scale HVAC equipment from leading brands such as Daikin, Mitsubishi, Gree, and Hisense. Through our dedication to excellence and customer satisfaction, we continue to provide efficient and reliable solutions tailored to every project's unique requirements.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Our History Section -->
-            <div id="our-history-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <h2 class="h2 fw-bold text-weida-green text-center mb-4">Our History</h2>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <div class="timeline-image-wrapper">
-                            <img src="image/establish_2019.jpg" alt="Established in 2019" class="timeline-image">
+            <div id="our-history-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="h2 fw-bold text-weida-green text-center mb-0">Our History</h2>
+                </div>
+                <div class="card-body p-5">
+                    <div class="timeline-grid">
+                        <div class="timeline-item">
+                            <div class="timeline-image-wrapper">
+                                <img src="image/establish_2019.png" alt="Established in 2019" class="timeline-image">
+                            </div>
+                            <div class="timeline-content-card">
+                                <p class="timeline-year">2019</p>
+                                <p class="timeline-text">The company's predecessor was VERDA Air Conditioning and Refrigeration Company, and became a distributor of the Gree brand.</p>
+                            </div>
                         </div>
-                        <div class="timeline-content-card">
-                            <p class="timeline-year">2019</p>
-                            <p class="timeline-text">The company's predecessor was VERDA Air Conditioning and Refrigeration Company, and became a distributor of the Gree brand.</p>
+                        <div class="timeline-item">
+                            <div class="timeline-image-wrapper">
+                                <img src="image/develop_2023.png" alt="Developed in 2023" class="timeline-image">
+                            </div>
+                            <div class="timeline-content-card">
+                                <p class="timeline-year">2023</p>
+                                <p class="timeline-text">To meet the needs of company development, we established a new company to represent the new Hisense brand.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-image-wrapper">
-                            <img src="image/develop_2023.jpg" alt="Developed in 2023" class="timeline-image">
+                        <div class="timeline-item">
+                            <div class="timeline-image-wrapper">
+                                <img src="image/strengthen_2024.png" alt="Strengthen in 2024" class="timeline-image">
+                            </div>
+                            <div class="timeline-content-card">
+                                <p class="timeline-year">2024</p>
+                                <p class="timeline-text">We have an efficient and professional management team who have undergone training and are familiar with the installation, technical standards of VRF central air conditioning, leading to multi project completion and client satisfaction.</p>
+                            </div>
                         </div>
-                        <div class="timeline-content-card">
-                            <p class="timeline-year">2023</p>
-                            <p class="timeline-text">To meet the needs of company development, we established a new company to represent the new Hisense brand.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-image-wrapper">
-                            <img src="image/strengthen_2024.jpg" alt="Strengthen in 2024" class="timeline-image">
-                        </div>
-                        <div class="timeline-content-card">
-                            <p class="timeline-year">2024</p>
-                            <p class="timeline-text">We have an efficient and professional management team who have undergone training and are familiar with the installation, technical standards of VRF central air conditioning, leading to multi project completion and client satisfaction.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-image-wrapper">
-                            <img src="image/excellence_2025.jpg" alt="Worldwide Competence, HVAC Excellence in 2025" class="timeline-image">
-                        </div>
-                        <div class="timeline-content-card">
-                            <p class="timeline-year">2025</p>
-                            <p class="timeline-text">As part of our growth strategy, we are expanding our expertise to a worldwide scale, aiming to provide innovative HVAC technologies and exceptional services across global markets.</p>
+                        <div class="timeline-item">
+                            <div class="timeline-image-wrapper">
+                                <img src="image/excellence_2025.png" alt="Worldwide Competence, HVAC Excellence in 2025" class="timeline-image">
+                            </div>
+                            <div class="timeline-content-card">
+                                <p class="timeline-year">2025</p>
+                                <p class="timeline-text">As part of our growth strategy, we are expanding our expertise to a worldwide scale, aiming to provide innovative HVAC technologies and exceptional services across global markets.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-             <div id="vision-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <h2 class="h2 fw-bold text-weida-green text-center mb-4">Our Vision</h2>
-                <div class="card-body p-0 text-white">
-                    <p class="mb-4 text-center">To be a leading global HVAC solutions provider, recognized for our expertise in air conditioning, ventilation, and maintenance services.</p>
+             <div id="vision-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="h2 fw-bold text-weida-green text-center mb-0">Our Vision</h2>
+                </div>
+                <div class="card-body p-5 text-white text-center">
+                    <img src="image/ourvison.png" alt="Our Vision" class="w-100 rounded-3 shadow mb-4">
+                    <p class="mb-0">To be a leading global HVAC solutions provider, recognized for our expertise in air conditioning, ventilation, and maintenance services.</p>
                 </div>
             </div>
-            <div id="mission-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <h2 class="h2 fw-bold text-weida-green text-center mb-4">Our Mission</h2>
-                <div class="card-body p-0 text-white">
-                     <p class="text-center">To deliver world-class HVAC solutions through innovative design, professional installation, and reliable maintenance services, ensuring optimal comfort and efficiency for our clients.</p>
+            <div id="mission-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="h2 fw-bold text-weida-green text-center mb-0">Our Mission</h2>
+                </div>
+                <div class="card-body p-5 text-white text-center">
+                    <img src="image/ourmission.png" alt="Our Mission" class="w-100 rounded-3 shadow mb-4">
+                    <p class="mb-0">To deliver world-class HVAC solutions through innovative design, professional installation, and reliable maintenance services, ensuring optimal comfort and efficiency for our clients.</p>
                 </div>
             </div>
-            <div id="organizational-chart-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <h2 class="h2 fw-bold text-weida-green text-center mb-4">Organizational Chart</h2>
-                <div class="card-body p-0 text-white text-center">
-                    <img src="image/OrganizationChart.jpg" alt="Weida HVAC Organizational Chart" class="w-100 rounded-3 shadow">
+            <div id="organizational-chart-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="h2 fw-bold text-weida-green text-center mb-0">Organizational Chart</h2>
+                </div>
+                <div class="card-body p-5 text-white text-center">
+                    <img src="image/OrganizationChart.png" alt="Weida HVAC Organizational Chart" class="w-100 rounded-3 shadow">
                 </div>
             </div>
-             <div id="office-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <h2 class="h2 fw-bold text-weida-green text-center mb-4">Office & Warehouse</h2>
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="image/ourwarehouse_ramon.jpg" alt="Weida HVAC Office and Warehouse" class="w-100 rounded-3 shadow mb-3">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card-body p-0 text-white">
-                            <p><strong>Philippines Office:</strong><br>9481 Ramon St., Paranaque,Metro Manila, Philippines</p>
+             <div id="office-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="h2 fw-bold text-weida-green text-center mb-0">Office & Warehouse</h2>
+                </div>
+                <div class="card-body p-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="image/ourwarehouse_ramon.jpg" alt="Weida HVAC Office and Warehouse" class="w-100 rounded-3 shadow mb-3">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card-body p-0 text-white">
+                                <p><strong>Philippines Office:</strong><br>9481 Ramon St., Paranaque,Metro Manila, Philippines</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="image/ourwarehouse_dubai.jpg" alt="Weida HVAC Office and Warehouse" class="w-100 rounded-3 shadow mb-3">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card-body p-0 text-white">
+                                <p><strong>Dubai Office:</strong><br>Weida HVAC Company LLC - Deira, Dubai, United Arab Emirates.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="image/ourwarehouse_dubai.jpg" alt="Weida HVAC Office and Warehouse" class="w-100 rounded-3 shadow mb-3">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card-body p-0 text-white">
-                            <p><strong>Dubai Office:</strong><br>Weida HVAC Company LLC - Deira, Dubai, United Arab Emirates.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div id="projects-section" class="card p-5 mb-4 rounded-3 shadow bg-black border-secondary">
-                <h2 class="h2 fw-bold text-weida-green text-center mb-4">Our Projects</h2>
-                <div class="card-body p-0 text-white">
-                    <ul class="list-unstyled">
-                        <li>
-                            <p><strong>Aspire Corporate Plaza (2020)</strong>: Daikin VRF Air Conditioner installation in Pasay, Metro Manila.</p>
-                        </li>
-                        <li>
-                            <p><strong>Hua Chen Bay Plaza (2020)</strong>: Gree VRF Air Conditioner installation in Pasay, Metro Manila.</p>
-                        </li>
-                        <li>
-                            <p><strong>Royal Peak Plaza (2021)</strong>: Gree VRF Air Conditioner installation in Parañaque, Metro Manila.</p>
-                        </li>
-                        <li>
-                            <p><strong>The Centrium (2022)</strong>: Mitsubishi Air Conditioning preventive maintenance and additional VRF system installation in Aseana City, Metro Manila.</p>
-                        </li>
-                        <li>
-                            <p><strong>Y-Tower (2023)</strong>: Hisense VRF Air Conditioner installation in Pasay, Metro Manila.</p>
-                        </li>
-                        <li>
-                            <p><strong>Ayala Alabang (2023)</strong>: Hisense Multi-Split System installation and air duct machine pipe installation in Muntinlupa, Metro Manila.</p>
-                        </li>
-                        <li>
-                            <p><strong>Country Garden (2024)</strong>: Hisense Split System installation in Bataan City.</p>
-                        </li>
-                        <li>
-                            <p><strong>Central Link Project (2024-Present)</strong>: Hisense VRF System installation in Parañaque, Metro Manila.</p>
-                        </li>
-                    </ul>
+            <div id="projects-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+                <div class="card-header p-3">
+                    <h2 class="text-uppercase fw-bold text-weida-green text-center mb-0">OUR PROJECTS</h2>
+                </div>
+                <div class="card-body p-5">
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project I : 2020 - Aspire Corporate Plaza</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/aspire1.png" alt="Aspire Corporate Plaza Exterior View" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Pasay, Metro Manila</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/aspire2.png" alt="Daikin VRF Installation" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>VRF Installation</h4>
+                                    <p>Installation of DAIKIN VRF Air Conditioners on floors 8-10. Total 40 system units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/aspire3.png" alt="Daikin Split Units" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Split Units</h4>
+                                    <p>Included Daikin 1 is to 1 split Units. Project cost: 32,000,000 Pesos.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/aspire4.png" alt="Maintenance and Repair" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Maintenance & Repair</h4>
+                                    <p>Ongoing maintenance and repair services provided since 2020.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project II : 2020 - Hua Chen Bay Plaza</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/huachen1.png" alt="Hua Chen Bay Plaza Exterior" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Pasay, Metro Manila.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/huachen2.png" alt="Gree VRF Installation" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>VRF Installation</h4>
+                                    <p>Installation of GREE VRF Air Conditioners on floors 8-11. Total 42 system units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/huachen3.png" alt="Ceiling Cassette Units" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Ceiling Cassette</h4>
+                                    <p>Installation of Ceiling Cassette indoor units. Project cost: 28,000,000 Pesos.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/huachen4.png" alt="Ongoing Maintenance" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Maintenance & Repair</h4>
+                                    <p>Maintenance and repair services are provided for the entire building.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project III : 2021 - Royal Peak Plaza</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/royal1.png" alt="Royal Peak Plaza" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Paranaque, Metro Manila.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/royal2.png" alt="Gree VRF Installation" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>VRF Installation</h4>
+                                    <p>Installation of GREE VRF Air Conditioners on floors 5-11. Total 42 system units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/royal3.png" alt="Testing and Commissioning" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Testing & Commissioning</h4>
+                                    <p>Full testing and commissioning of all installed systems.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/royal4.png" alt="Project Site" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Total Cost</h4>
+                                    <p>Project cost: 55,000,000 Pesos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project IV : 2022 - The Centrium</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/centrium1.png" alt="The Centrium" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Aseana City, Metro Manila.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/centrium2.png" alt="Mitsubishi Unit" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Mitsubishi Air Conditioning</h4>
+                                    <p>Trouble-shooting and replacement of accessories for existing Mitsubishi ACs.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/centrium3.png" alt="Preventive Maintenance" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Preventive Maintenance</h4>
+                                    <p>Scheduled preventive maintenance services for all HVAC equipment.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/centrium4.png" alt="VRF System" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Additional VRF System</h4>
+                                    <p>Additional VRF System installation. Project cost: 9,000,000 Pesos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project V : 2023 - Y-Tower</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/ytower1.png" alt="Y-Tower Exterior View" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Pasay, Metro Manila.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/ytower2.png" alt="Hisense VRF Installation" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>VRF Installation</h4>
+                                    <p>Installation of HISENSE VRF Air Conditioners on floors 5-6. Total 5 system units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/ytower3.png" alt="Maintenance and Repair" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Maintenance & Repair</h4>
+                                    <p>Ongoing maintenance and repair services provided.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/ytower4.png" alt="Testing and Commissioning" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Testing & Commissioning</h4>
+                                    <p>Full testing and commissioning. Project cost: 8,000,000 Pesos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project VI : 2023 - Ayala Alabang</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/ayala1.png" alt="Ayala Alabang Residence" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Residential Project</h4>
+                                    <p>Located in Muntinlupa, Metro Manila.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/ayala2.png" alt="Hisense Multi-Split System" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Hisense Multi-Split</h4>
+                                    <p>Installation of HISENSE Multi-Split System. Total 5 system units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/ayala3.png" alt="Air Duct Installation" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Air Duct Installation</h4>
+                                    <p>Air duct machine pipe installation and insulation.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/ayala4.png" alt="Project Site" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Total Cost</h4>
+                                    <p>Project cost: 3,500,000 Pesos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project VII : 2024 - Country Garden</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/garden1.png" alt="Country Garden" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Bataan City.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/garden2.png" alt="Hisense Split System" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Hisense Split System</h4>
+                                    <p>Installation of Hisense Split System. Installed 108 units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/garden3.png" alt="Commissioning and Testing" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Commissioning & Testing</h4>
+                                    <p>Full commissioning and testing of all installed units.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/garden4.png" alt="Maintenance" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Maintenance & Repair</h4>
+                                    <p>Maintenance and repair services are provided on-site.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="lead text-center mb-4">Project VIII : 2024 - Central Link Project</h3>
+                        <div class="project-images-grid">
+                            <div class="project-image-wrapper">
+                                <img src="image/central1.png" alt="Central Link Project" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Exterior View</h4>
+                                    <p>Located in Paranaque, Metro Manila.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/central2.png" alt="Hisense VRF System" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Hisense VRF System</h4>
+                                    <p>Installation of Hisense VRF System. Installation of 106 system.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/central3.png" alt="Commissioning and Testing" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Commissioning & Testing</h4>
+                                    <p>Full commissioning and testing is underway.</p>
+                                </div>
+                            </div>
+                            <div class="project-image-wrapper">
+                                <img src="image/central4.png" alt="Total Cost" class="project-image">
+                                <div class="project-overlay">
+                                    <h4>Total Cost</h4>
+                                    <p>Project cost: 170,800,000 Pesos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="mb-5">
+                        <h3 class="lead text-center mb-4">And Many More...</h3>
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 mb-4">
+                                <div class="project-item">
+                                    <img src="image/cagayan.png" alt="Cagayan Resort">
+                                    <div class="project-item-text">
+                                        <h4>Cagayan Holiday and Leisure Resort</h4>
+                                        <p>San Vicente Rd, Barangay Tangatan, Santa Ana, 3515 Cagayan</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="project-item">
+                                    <img src="image/eastglory.png" alt="East Glory">
+                                    <div class="project-item-text">
+                                        <h4>EAST GLORY</h4>
+                                        <p>Pasay City</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="project-item">
+                                    <img src="image/aseana.png" alt="Aseana Tower 3">
+                                    <div class="project-item-text">
+                                        <h4>ASEANA TOWER 3</h4>
+                                        <p>Paranaque City, Manila</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="project-item">
+                                    <img src="image/darada.png" alt="Darada Centre">
+                                    <div class="project-item-text">
+                                        <h4>DARADA CENTRE</h4>
+                                        <p>Pasay City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Contact Page -->
         <div id="contact" class="page">
              <div class="contact-container">
                 <div class="contact-image-container">
@@ -563,7 +941,6 @@
             </div>
         </div>
     </main>
-    <!-- Bootstrap JS with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // Page navigation logic
@@ -574,10 +951,6 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-            // Close hamburger menu on navigation
-            if (window.innerWidth <= 768) {
-                navbarLinks.classList.remove('active');
-            }
         }
         function toggleMenu() {
             navbarLinks.classList.toggle('active');
