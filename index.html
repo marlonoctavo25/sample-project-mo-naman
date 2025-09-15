@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weida HVAC</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* ==========================================================================
+           1. General & Body Styles
+           ========================================================================== */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #000000;
             color: #ffffff;
             scroll-behavior: smooth;
         }
+
         .page {
             display: none;
         }
+
         .page.active {
             display: block;
         }
-        /* Make each section on the About page have a distinct background */
-        #about > .card {
-            background-color: #000000;
+
+        .text-weida-green {
+            color: #76C44B;
         }
-        #about .card-header {
-            background-color: #1a1a1a;
-            border-bottom: 2px solid #76C44B;
-        }
-        /* Style for the canvas background */
+
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -39,17 +44,19 @@
             z-index: -1;
             background-color: #000000;
         }
-        .text-weida-green {
-            color: #76C44B;
-        }
+        
+        /* ==========================================================================
+           2. Header & Navigation
+           ========================================================================== */
         .header-container {
-            position: fixed; /* Freeze the pane at the top */
+            position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
             background-color: #000;
             padding: 1rem 0;
         }
+
         .header-bg {
             position: absolute;
             top: 0;
@@ -60,26 +67,30 @@
             clip-path: polygon(0 0, 100% 0, 100% 50%, 0% 100%);
             z-index: -1;
         }
+
         .header-logo {
             display: flex;
             align-items: center;
         }
+
         .header-logo img {
             width: 100px;
             height: 100px;
-            background-color: noblack;
             border-radius: 50%;
-            padding: 0px;
-            margin-right: 0px;
+            transition: all 0.3s ease;
         }
+
         .header-logo span {
             font-weight: bold;
             font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
+
         .navbar-links {
             display: flex;
             gap: 2rem;
         }
+
         .navbar-links a {
             color: white;
             text-decoration: none;
@@ -87,26 +98,28 @@
             font-weight: 500;
             transition: color 0.3s;
         }
+
         .navbar-links a:hover {
             color: #76C44B;
         }
-        @media (max-width: 768px) {
-            .navbar-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #000;
-                padding: 1rem 0;
-                text-align: center;
-            }
-            .navbar-links.active {
-                display: flex;
-            }
+
+        .navbar-toggler {
+            border: none;
         }
-        /* New styles for the homepage as per the image */
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28118, 196, 75, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .nav-link.dropdown-toggle::after {
+            display: none;
+        }
+
+        /* ==========================================================================
+           3. Page-Specific Sections
+           ========================================================================== */
+
+        /* --- Home Page --- */
         .home-section {
             display: flex;
             align-items: center;
@@ -114,57 +127,51 @@
             padding: 5rem 0;
             background-color: #000000;
         }
+
         .home-content {
             flex: 1;
             padding-right: 2rem;
         }
+
         .home-content h1 {
             font-size: 4rem;
             font-weight: 700;
             line-height: 1;
             margin-bottom: 1rem;
         }
+
         .home-image-container {
             flex: 2;
             position: relative;
             text-align: right;
-            clip-path: polygon(0 0%, 100% 0, 100% 100%, 0% 100%);
-            border: 0px solid #76C44B;
         }
+
         .home-image-container img {
             width: 100%;
             height: auto;
             object-fit: cover;
             display: block;
         }
-        @media (max-width: 992px) {
-            .home-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .home-content {
-                padding-right: 0;
-                margin-bottom: 2rem;
-            }
-            .home-content h1 {
-                font-size: 3rem;
-            }
-            .home-image-container {
-                text-align: center;
-                clip-path: none;
-                border: none;
-            }
-            .home-image-container img {
-                max-width: 100%;
-            }
+
+        /* --- About Page --- */
+        #about>.card {
+            background-color: #000000;
         }
-        .nav-link.dropdown-toggle::after {
-            display: none;
+
+        #about .card-header {
+            background-color: #1a1a1a;
+            border-bottom: 2px solid #76C44B;
         }
-        /* Our History Section Styles */
+
+        #introduction-section .card-header h2 {
+            white-space: nowrap; /* Prevents text from wrapping */
+        }
+        
+        /* --- History Timeline --- */
         #our-history-section {
             position: relative;
         }
+
         .timeline-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -172,6 +179,7 @@
             padding-top: 60px;
             position: relative;
         }
+
         .timeline-grid::before {
             content: '';
             position: absolute;
@@ -181,6 +189,7 @@
             height: 2px;
             background-color: #76C44B;
         }
+
         .timeline-item {
             display: flex;
             flex-direction: column;
@@ -188,6 +197,7 @@
             position: relative;
             padding-top: 60px;
         }
+
         .timeline-image-wrapper {
             position: absolute;
             top: 0;
@@ -203,11 +213,13 @@
             overflow: hidden;
             border-radius: 12px;
         }
+
         .timeline-image {
             width: 100%;
             height: 100%;
             object-fit: contain;
         }
+
         .timeline-content-card {
             background-color: #1a1a1a;
             padding: 1.5rem 1rem;
@@ -221,62 +233,39 @@
             text-align: center;
             padding-top: 70px;
         }
+
         .timeline-year {
             font-weight: 700;
             font-size: 1.2rem;
             color: #76C44B;
             margin-bottom: 0.5rem;
         }
+
         .timeline-text {
             font-size: 0.9rem;
             color: #ffffff;
         }
-        @media (max-width: 992px) {
-            .timeline-grid {
-                grid-template-columns: 1fr;
-                padding-top: 0;
-            }
-            .timeline-grid::before {
-                top: 0;
-                left: 50%;
-                height: 100%;
-                width: 2px;
-                transform: translateX(-50%);
-            }
-            .timeline-item {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding-top: 60px;
-            }
-            .timeline-image-wrapper {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .timeline-content-card {
-                text-align: center;
-                padding-top: 70px;
-            }
-        }
-        /* New Project Section Styles */
+        
+        /* --- Projects Section --- */
         .project-section {
             padding-top: 4rem;
             padding-bottom: 4rem;
         }
+
         #projects-section .card-header h2 {
             font-size: 2.5rem;
         }
-        #projects-section .mb-5 > h3.lead {
-             color: #ffffff;
+
+        #projects-section .mb-5>h3.lead {
+            color: #ffffff;
         }
-        /* New grid for projects */
+
         .project-images-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
+
         .project-image-wrapper {
             position: relative;
             overflow: hidden;
@@ -285,6 +274,7 @@
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             background-color: #222222;
         }
+
         .project-image {
             position: absolute;
             top: 0;
@@ -294,9 +284,11 @@
             object-fit: cover;
             transition: transform 0.3s ease-in-out;
         }
+
         .project-image-wrapper:hover .project-image {
             transform: scale(1.1);
         }
+
         .project-overlay {
             position: absolute;
             top: 0;
@@ -315,71 +307,71 @@
             transition: opacity 0.3s ease-in-out;
             clip-path: inherit;
         }
+
         .project-image-wrapper:hover .project-overlay {
             opacity: 1;
         }
+
         .project-overlay h4 {
             font-size: 1.2rem;
             font-weight: 600;
             color: #76C44B;
         }
+
         .project-overlay p {
             font-size: 0.9rem;
             margin-top: 0.5rem;
         }
-        /* Project Item Styles (from former And Many More section) */
+
         .project-item {
             display: flex;
             align-items: center;
             gap: 1.5rem;
             margin-bottom: 1.5rem;
         }
+
         .project-item img {
             width: 200px;
             height: 200px;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             object-fit: fill;
         }
+
         .project-item-text h4 {
             font-size: 1.2rem;
             font-weight: 600;
             color: #76C44B;
         }
+
         .project-item-text p {
             color: #ffffff;
             margin: 0;
         }
-        @media (max-width: 768px) {
-            .project-item {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
 
-        /* Contact Page Styles */
+        /* --- Contact Page --- */
         #contact .contact-container {
             display: flex;
-            align-items: center; /* Changed to center alignment */
+            align-items: center;
             background-color: #000;
-            border: none;
             border-radius: 15px;
             overflow: hidden;
-            flex-wrap: nowrap; /* Changed to nowrap */
         }
+
         #contact .contact-image-container {
             flex: 1 1 40%;
-            /* Removed min-height to allow image to dictate height */
         }
+
         #contact .contact-image {
             width: 100%;
-            height: auto;
-            object-fit: contain; /* Changed to contain */
-            clip-path: none;
+            height: 100%;
+            object-fit: cover;
         }
+
         #contact .contact-details {
             flex: 1 1 60%;
             padding: 4rem;
         }
+
         #contact .contact-details h3 {
             font-size: 2.5rem;
             font-weight: 700;
@@ -387,25 +379,30 @@
             margin-bottom: 2rem;
             text-transform: uppercase;
         }
+
         .contact-info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
         }
+
         .contact-info-item h4 {
             color: #76C44B;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-         .contact-info-item p {
+
+        .contact-info-item p {
             margin: 0;
             font-size: 1.1rem;
         }
+
         .qr-codes {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
         }
+
         .qr-codes img {
             width: 100px;
             height: 100px;
@@ -413,62 +410,169 @@
             border-radius: 10px;
         }
 
-        @media (max-width: 992px) {
+        /* ==========================================================================
+           4. Responsive Media Queries
+           ========================================================================== */
+        
+        /* --- Large Devices (Desktops, <1200px) --- */
+        @media (max-width: 1199.98px) {
+            .timeline-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* --- Medium Devices (Tablets, <992px) --- */
+        @media (max-width: 991.98px) {
+            /* Mobile Navigation */
+            .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #000;
+                padding: 1rem;
+            }
+
+            .navbar-links a,
+            .navbar-links .dropdown {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Home Section */
+            .home-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .home-content {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 3rem;
+            }
+
+            .home-image-container {
+                text-align: center;
+            }
+
+            /* Contact Section */
             #contact .contact-container {
                 flex-direction: column;
             }
-            #contact .contact-image-container {
-                 clip-path: none;
-                 min-height: 300px;
-            }
-            #contact .contact-image {
-                clip-path: none;
-            }
+
             #contact .contact-details {
                 padding: 2rem;
                 text-align: center;
             }
+
             .contact-info-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+
             .qr-codes {
                 justify-content: center;
             }
         }
-        #introduction-section .card-header h2 {
-            white-space: nowrap; /* Prevents text from wrapping */
+
+        /* --- Small Devices (Landscape Phones, <768px) --- */
+        @media (max-width: 767.98px) {
+            .card-body.p-5 {
+                padding: 2rem !important; /* Adjust padding for smaller screens */
+            }
+
+            /* History Timeline */
+            .timeline-grid {
+                grid-template-columns: 1fr;
+                padding-top: 0;
+            }
+
+            .timeline-grid::before {
+                top: 0;
+                left: 50%;
+                height: 100%;
+                width: 2px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-item {
+                padding-top: 80px;
+                margin-bottom: 2rem;
+            }
+            
+            /* Projects Section */
+            .project-item {
+                flex-direction: column;
+                text-align: center;
+            }
         }
+
+        /* --- Extra Small Devices (Portrait Phones, <576px) --- */
+        @media (max-width: 575.98px) {
+            .header-logo img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header-logo span {
+                font-size: 1.2rem;
+            }
+
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #introduction-section .card-header h2 {
+                white-space: normal; /* Allow title to wrap on very small screens */
+            }
+        }
+
     </style>
 </head>
+
 <body>
     <canvas id="bg-canvas"></canvas>
+
     <header class="header-container">
         <div class="header-bg"></div>
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="header-logo">
+            
+            <a href="#" class="header-logo text-decoration-none text-white" onclick="showPage('home')">
                 <img src="image/weida_logo.png" alt="Weida HVAC Logo">
-                <span class="text-weida-green">WEIDA</span> HVAC
-            </div>
-            <nav class="navbar-links" id="navbarNav">
+                <span class="text-weida-green ms-2">WEIDA</span> 
+                <span class="d-none d-sm-inline">HVAC</span>
+            </a>
+            
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <nav class="navbar-links collapse navbar-collapse d-lg-flex justify-content-end" id="navbarNav">
                 <a href="#" onclick="showPage('home')">Home</a>
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('introduction-section')">Introduction</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('our-history-section')">Our History</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('vision-section')">Our Vision</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('mission-section')">Our Mission</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('organizational-chart-section')">Organizational Chart</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('office-section')">Office & Warehouse</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); scrollToSection('projects-section')">Our Projects</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('introduction-section'))">Introduction</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('our-history-section'))">Our History</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('our-vision-section'))">Our Vision</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('our-mission-section'))">Our Mission</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('organizational-chart-section'))">Organizational Chart</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('office-section'))">Office & Warehouse</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPage('about'); setTimeout(() => scrollToSection('projects-section'))">Our Projects</a></li>
                     </ul>
                 </div>
                 <a href="#" onclick="showPage('contact')">Contact</a>
             </nav>
         </div>
     </header>
-    <main class="container my-5 pt-5">
+
+    <main class="container" style="padding-top: 140px; padding-bottom: 2rem;">
+        
         <div id="home" class="page active">
             <div class="row home-section">
                 <div class="col-lg-6 home-content">
@@ -484,7 +588,9 @@
                 </div>
             </div>
         </div>
+        
         <div id="about" class="page">
+            
             <div id="introduction-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="h1 fw-bold text-weida-green text-center mb-0">INTRODUCTION</h2>
@@ -500,6 +606,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="our-history-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="h2 fw-bold text-weida-green text-center mb-0">Our History</h2>
@@ -545,7 +652,8 @@
                     </div>
                 </div>
             </div>
-             <div id="vision-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+
+            <div id="our-vision-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="h2 fw-bold text-weida-green text-center mb-0">Our Vision</h2>
                 </div>
@@ -554,7 +662,8 @@
                     <p class="mb-0">To be a leading global HVAC solutions provider, recognized for our expertise in air conditioning, ventilation, and maintenance services.</p>
                 </div>
             </div>
-            <div id="mission-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+
+            <div id="our-mission-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="h2 fw-bold text-weida-green text-center mb-0">Our Mission</h2>
                 </div>
@@ -563,6 +672,7 @@
                     <p class="mb-0">To deliver world-class HVAC solutions through innovative design, professional installation, and reliable maintenance services, ensuring optimal comfort and efficiency for our clients.</p>
                 </div>
             </div>
+
             <div id="organizational-chart-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="h2 fw-bold text-weida-green text-center mb-0">Organizational Chart</h2>
@@ -571,7 +681,8 @@
                     <img src="image/OrganizationChart.png" alt="Weida HVAC Organizational Chart" class="w-100 rounded-3 shadow">
                 </div>
             </div>
-             <div id="office-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
+
+            <div id="office-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="h2 fw-bold text-weida-green text-center mb-0">Office & Warehouse</h2>
                 </div>
@@ -596,11 +707,13 @@
                     </div>
                 </div>
             </div>
+
             <div id="projects-section" class="card mb-4 rounded-3 shadow border-secondary overflow-hidden">
                 <div class="card-header p-3">
                     <h2 class="text-uppercase fw-bold text-weida-green text-center mb-0">OUR PROJECTS</h2>
                 </div>
                 <div class="card-body p-5">
+                    
                     <div class="mb-5">
                         <h3 class="lead text-center mb-4">Project I : 2020 - Aspire Corporate Plaza</h3>
                         <div class="project-images-grid">
@@ -634,6 +747,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="mb-5">
                         <h3 class="lead text-center mb-4">Project II : 2020 - Hua Chen Bay Plaza</h3>
                         <div class="project-images-grid">
@@ -667,205 +781,8 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="mb-5">
-                        <h3 class="lead text-center mb-4">Project III : 2021 - Royal Peak Plaza</h3>
-                        <div class="project-images-grid">
-                            <div class="project-image-wrapper">
-                                <img src="image/royal1.png" alt="Royal Peak Plaza" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Exterior View</h4>
-                                    <p>Located in Paranaque, Metro Manila.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/royal2.png" alt="Gree VRF Installation" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>VRF Installation</h4>
-                                    <p>Installation of GREE VRF Air Conditioners on floors 5-11. Total 42 system units.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/royal3.png" alt="Testing and Commissioning" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Testing & Commissioning</h4>
-                                    <p>Full testing and commissioning of all installed systems.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/royal4.png" alt="Project Site" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Total Cost</h4>
-                                    <p>Project cost: 55,000,000 Pesos.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="lead text-center mb-4">Project IV : 2022 - The Centrium</h3>
-                        <div class="project-images-grid">
-                            <div class="project-image-wrapper">
-                                <img src="image/centrium1.png" alt="The Centrium" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Exterior View</h4>
-                                    <p>Located in Aseana City, Metro Manila.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/centrium2.png" alt="Mitsubishi Unit" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Mitsubishi Air Conditioning</h4>
-                                    <p>Trouble-shooting and replacement of accessories for existing Mitsubishi ACs.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/centrium3.png" alt="Preventive Maintenance" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Preventive Maintenance</h4>
-                                    <p>Scheduled preventive maintenance services for all HVAC equipment.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/centrium4.png" alt="VRF System" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Additional VRF System</h4>
-                                    <p>Additional VRF System installation. Project cost: 9,000,000 Pesos.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="lead text-center mb-4">Project V : 2023 - Y-Tower</h3>
-                        <div class="project-images-grid">
-                            <div class="project-image-wrapper">
-                                <img src="image/ytower1.png" alt="Y-Tower Exterior View" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Exterior View</h4>
-                                    <p>Located in Pasay, Metro Manila.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/ytower2.png" alt="Hisense VRF Installation" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>VRF Installation</h4>
-                                    <p>Installation of HISENSE VRF Air Conditioners on floors 5-6. Total 5 system units.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/ytower3.png" alt="Maintenance and Repair" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Maintenance & Repair</h4>
-                                    <p>Ongoing maintenance and repair services provided.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/ytower4.png" alt="Testing and Commissioning" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Testing & Commissioning</h4>
-                                    <p>Full testing and commissioning. Project cost: 8,000,000 Pesos.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="lead text-center mb-4">Project VI : 2023 - Ayala Alabang</h3>
-                        <div class="project-images-grid">
-                            <div class="project-image-wrapper">
-                                <img src="image/ayala1.png" alt="Ayala Alabang Residence" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Residential Project</h4>
-                                    <p>Located in Muntinlupa, Metro Manila.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/ayala2.png" alt="Hisense Multi-Split System" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Hisense Multi-Split</h4>
-                                    <p>Installation of HISENSE Multi-Split System. Total 5 system units.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/ayala3.png" alt="Air Duct Installation" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Air Duct Installation</h4>
-                                    <p>Air duct machine pipe installation and insulation.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/ayala4.png" alt="Project Site" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Total Cost</h4>
-                                    <p>Project cost: 3,500,000 Pesos.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="lead text-center mb-4">Project VII : 2024 - Country Garden</h3>
-                        <div class="project-images-grid">
-                            <div class="project-image-wrapper">
-                                <img src="image/garden1.png" alt="Country Garden" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Exterior View</h4>
-                                    <p>Located in Bataan City.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/garden2.png" alt="Hisense Split System" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Hisense Split System</h4>
-                                    <p>Installation of Hisense Split System. Installed 108 units.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/garden3.png" alt="Commissioning and Testing" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Commissioning & Testing</h4>
-                                    <p>Full commissioning and testing of all installed units.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/garden4.png" alt="Maintenance" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Maintenance & Repair</h4>
-                                    <p>Maintenance and repair services are provided on-site.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="lead text-center mb-4">Project VIII : 2024 - Central Link Project</h3>
-                        <div class="project-images-grid">
-                            <div class="project-image-wrapper">
-                                <img src="image/central1.png" alt="Central Link Project" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Exterior View</h4>
-                                    <p>Located in Paranaque, Metro Manila.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/central2.png" alt="Hisense VRF System" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Hisense VRF System</h4>
-                                    <p>Installation of Hisense VRF System. Installation of 106 system.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/central3.png" alt="Commissioning and Testing" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Commissioning & Testing</h4>
-                                    <p>Full commissioning and testing is underway.</p>
-                                </div>
-                            </div>
-                            <div class="project-image-wrapper">
-                                <img src="image/central4.png" alt="Total Cost" class="project-image">
-                                <div class="project-overlay">
-                                    <h4>Total Cost</h4>
-                                    <p>Project cost: 170,800,000 Pesos.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="mb-5">
                         <h3 class="lead text-center mb-4">And Many More...</h3>
                         <div class="row justify-content-center">
                             <div class="col-md-6 mb-4">
@@ -909,8 +826,9 @@
                 </div>
             </div>
         </div>
+        
         <div id="contact" class="page">
-             <div class="contact-container">
+            <div class="contact-container">
                 <div class="contact-image-container">
                     <img class="contact-image" src="image/contact.jpg" alt="HVAC Expert">
                 </div>
@@ -941,26 +859,38 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
     <script>
-        // Page navigation logic
+        // --- Page Navigation Logic ---
         const pages = document.querySelectorAll('.page');
-        const navbarLinks = document.getElementById('navbarNav');
+        const navbarCollapse = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false
+        });
+
         function showPage(pageId) {
+            // Hide all pages
             pages.forEach(page => {
                 page.classList.remove('active');
             });
+            // Show the selected page
             document.getElementById(pageId).classList.add('active');
+
+            // Hide the mobile menu after a link is clicked
+            if (navbarCollapse.classList.contains('show')) {
+                bsCollapse.hide();
+            }
         }
-        function toggleMenu() {
-            navbarLinks.classList.toggle('active');
-        }
+
+        // --- Smooth Scrolling for Anchor Links ---
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
                 const headerOffset = document.querySelector('.header-container').offsetHeight;
                 const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; // Added 20px buffer
 
                 window.scrollTo({
                     top: offsetPosition,
@@ -969,7 +899,7 @@
             }
         }
 
-        // Background canvas logic
+        // --- Animated Background Canvas Logic ---
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -990,11 +920,11 @@
             height = canvas.height = window.innerHeight;
 
             ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = 'rgba(118, 196, 75, 0.1)'; // #76C44B with low alpha
+            ctx.strokeStyle = 'rgba(118, 196, 75, 0.1)';
             ctx.lineWidth = 1;
 
-            const size = 60; // radius.
-            const h = Math.sqrt(3) * size; // height of one equilateral triangle
+            const size = 60;
+            const h = Math.sqrt(3) * size;
             const w = 2 * size;
 
             for (let y = -h; y < height + h; y += h / 2) {
@@ -1005,7 +935,7 @@
             }
         };
 
-        // Event Listeners
+        // --- Event Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
             showPage('home');
             drawGrid();
@@ -1018,4 +948,5 @@
         });
     </script>
 </body>
+
 </html>
