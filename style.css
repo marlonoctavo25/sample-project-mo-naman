@@ -447,7 +447,7 @@ body {
     #introduction-section h5,
     #our-vision-section h5,
     #our-mission-section h5 {
-        text-align: center;
+        text-align: justify;
     }
 
     .home-content {
