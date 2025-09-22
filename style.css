@@ -118,6 +118,10 @@ body {
     padding-right: 2rem;
 }
 
+.home-content .lead {
+    text-align: justify;
+}
+
 .home-content h1 {
     font-size: 4rem;
     font-weight: 700;
@@ -126,7 +130,7 @@ body {
 }
 
 .home-image-container {
-    flex: 2;
+    flex: .7;
     position: relative;
     text-align: right;
 }
@@ -151,6 +155,13 @@ body {
 #introduction-section .card-header h2 {
     white-space: nowrap;
     /* Prevents text from wrapping */
+}
+
+#introduction-section h5,
+#our-vision-section h5,
+#our-mission-section h5 {
+    text-align: justify;
+    font-family: Poppins, sans-serif;
 }
 
 /* --- History Timeline --- */
@@ -230,6 +241,7 @@ body {
 .timeline-text {
     font-size: 0.9rem;
     color: #ffffff;
+    text-align: justify;
 }
 
 /* --- Projects Section --- */
@@ -428,6 +440,13 @@ body {
     /* Home Section */
     .home-section {
         flex-direction: column;
+        text-align: center;
+    }
+    
+    .home-content .lead,
+    #introduction-section h5,
+    #our-vision-section h5,
+    #our-mission-section h5 {
         text-align: center;
     }
 
